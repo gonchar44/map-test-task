@@ -100,7 +100,7 @@ export const MapTemplate = () => {
   }, [autocomplete])
 
   return (
-    <div className="w-full flex flex-col items-center py-5">
+    <section className="w-full flex flex-col items-center py-5">
       {isLoaded ? (
         <div className="w-full lg:w-8/12 flex flex-col items-center gap-y-3">
           {/*Search box*/}
@@ -119,6 +119,6 @@ export const MapTemplate = () => {
       ) : (
         <Loader />
       )}
-    </div>
+    </section>
   )
 }
