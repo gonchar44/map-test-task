@@ -6,7 +6,7 @@ import Header from '@/components/header'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Map',
+  title: 'Welcome to Map',
   description: 'Just check your map'
 }
 
