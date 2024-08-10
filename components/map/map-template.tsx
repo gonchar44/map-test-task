@@ -4,7 +4,7 @@ import Loader from '@/components/loader'
 import { useJsApiLoader } from '@react-google-maps/api'
 import { mapLibraries, mapOptions } from '@/constants'
 import { useEffect, useRef, useState } from 'react'
-import Field from '@/components/field'
+import Field from '@/components/map/field'
 import { buildMapPlaceCard } from '@/utils'
 
 export const MapTemplate = () => {
