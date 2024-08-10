@@ -1,4 +1,4 @@
-import { MapTemplate } from '@/components/map-template'
+import { MapTemplate } from '@/components/map/map-template'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

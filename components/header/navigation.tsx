@@ -10,7 +10,7 @@ const navLinks: NavLink[] = [
   { name: 'Map', href: '/map' }
 ]
 
-const Navigation = () => {
+export const Navigation = () => {
   const pathname = usePathname()
 
   const isActiveLink = (href: string) => href === pathname
@@ -39,5 +39,3 @@ const Navigation = () => {
     </nav>
   )
 }
-
-export default Navigation
