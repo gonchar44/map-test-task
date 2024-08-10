@@ -1,4 +1,4 @@
-import ButtonLink from '@/components/button-link'
+import { ButtonLink } from '@/components'
 
 const Home = () => (
   <main className="min-h-screen flex flex-col justify-center items-center gap-y-5 p-5">

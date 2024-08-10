@@ -1,4 +1,4 @@
-const Loader = () => (
+export const Loader = () => (
   <div role="status">
     <svg
       aria-hidden="true"
@@ -19,5 +19,3 @@ const Loader = () => (
     <span className="sr-only">Loading...</span>
   </div>
 )
-
-export default Loader
