@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import ButtonLink from '@/components/button-link'
+import { ButtonLink } from '@/components'
 
 const NotFound = () => (
   <main className="min-h-full flex flex-col items-center my-20 gap-y-5">
