@@ -2,7 +2,7 @@
 
 import { Loader } from '@/components'
 import { useJsApiLoader } from '@react-google-maps/api'
-import { mapLibraries, mapOptions } from '@/constants'
+import { mapLibraries, mapOptions } from '@/app/map/constants'
 import { useEffect, useRef, useState } from 'react'
 import Field from '@/components/map/field'
 import { buildMapPlaceCard } from '@/app/map/utils'
