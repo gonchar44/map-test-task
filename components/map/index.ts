@@ -1,2 +1,2 @@
-export * from './field'
+export * from './search-autocomplete'
 export * from './map-template'
