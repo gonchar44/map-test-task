@@ -9,6 +9,7 @@ export const themeColors = {
     light: '#a1a1a1',
     error: '#ef3939',
     success: '#478f47',
+    link: '#1A73E8',
     transparent: 'transparent'
   }
 }
