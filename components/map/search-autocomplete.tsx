@@ -17,7 +17,8 @@ export const SearchAutocomplete: FC<Props> = ({
   map,
   onSelectAddress
 }) => {
-  const { fetchHistoryData } = useMapContext()
+  const { selectedHistoryPlace, setSelectedHistoryPlace, fetchHistoryData } =
+    useMapContext()
   const [errorMessage, setErrorMessage] = useState('')
   const [autocomplete, setAutocomplete] =
     useState<google.maps.places.Autocomplete | null>(null)
@@ -119,7 +120,7 @@ export const SearchAutocomplete: FC<Props> = ({
       onSelectAddress(place.formatted_address as string)
       if (position) {
         setMarker(place, position)
-        saveToHistory(place, position)
+        saveToHistory(place, position).then()
       }
     })
   }
@@ -129,6 +130,34 @@ export const SearchAutocomplete: FC<Props> = ({
       listenAutocompleteChanges()
     }
   }, [autocomplete])
+
+  const updateFromHistory = () => {
+    if (!autocomplete || !autocompleteRef.current || !selectedHistoryPlace)
+      return
+
+    const { name, lat, lng, formatted_address } = selectedHistoryPlace
+
+    autocompleteRef.current.value = formatted_address
+    autocomplete.set('place', {
+      name: name,
+      geometry: {
+        location: new google.maps.LatLng({
+          lat,
+          lng
+        })
+      },
+      formatted_address
+    })
+    google.maps.event.trigger(autocomplete, 'place_changed')
+
+    setSelectedHistoryPlace(null)
+  }
+
+  useEffect(() => {
+    if (selectedHistoryPlace) {
+      updateFromHistory()
+    }
+  }, [selectedHistoryPlace])
 
   return (
     <div className="w-96 flex flex-col gap-y-1">
