@@ -37,14 +37,14 @@ export const History = () => {
   }
 
   return (
-    <div className="w-72">
+    <div className="min-w-[350px] w-[350px]">
       <h4 className="text-h4">Search History</h4>
 
       {isHistoryLoading && !historyPlaces.length ? (
         <Loader />
       ) : (
         <>
-          {historyPlaces && (
+          {!!historyPlaces.length ? (
             <ul className="flex flex-col gap-y-2 py-2">
               {historyPlaces.map((place) => (
                 <li className="flex items-center gap-x-1" key={place.id}>
@@ -66,6 +66,10 @@ export const History = () => {
                 </li>
               ))}
             </ul>
+          ) : (
+            <span className="text-sm text-secondary-dark">
+              History is empty
+            </span>
           )}
 
           {historyError && <ErrorMessage text={historyError} />}
