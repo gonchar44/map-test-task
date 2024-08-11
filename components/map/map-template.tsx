@@ -37,7 +37,7 @@ export const MapTemplate = () => {
   return (
     <section className="w-full flex flex-col items-center">
       {isLoaded ? (
-        <div className="w-full lg:w-8/12 flex flex-col items-center gap-y-3">
+        <div className="w-full lg:w-9/12 flex flex-col items-center gap-y-3">
           <SearchAutocomplete
             isLoaded={isLoaded}
             map={map}
@@ -49,10 +49,7 @@ export const MapTemplate = () => {
           )}
 
           {/*Map block*/}
-          <div
-            className="w-full 2xl:w-8/12 h-[600px] 2xl:h-[800px]"
-            ref={mapRef}
-          ></div>
+          <div className="w-full h-[600px] 2xl:h-[800px]" ref={mapRef}></div>
         </div>
       ) : (
         <Loader />
