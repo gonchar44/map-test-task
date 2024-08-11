@@ -22,12 +22,13 @@ export const createPlace = async (formData: FormData) => {
   }
 
   const placeId = uuidv4()
+  const createdAt = new Date().toISOString()
   const { name, formatted_address, lng, lat } = validatedFiles.data
 
   try {
     await sql`
-      INSERT INTO places (id, name, formatted_address, lat, lng)
-      VALUES (${placeId}, ${name}, ${formatted_address}, ${lng}, ${lat})
+      INSERT INTO places (id, name, formatted_address, lat, lng, created_at)
+      VALUES (${placeId}, ${name}, ${formatted_address}, ${lng}, ${lat}, ${createdAt})
     `
   } catch (error) {
     throw new Error(

@@ -6,7 +6,9 @@ import { sql } from '@vercel/postgres'
 export const GET = async () => {
   try {
     const data = await sql<Place>`
-      SELECT id, name, formatted_address, lat, lng FROM places
+      SELECT id, name, formatted_address, lat, lng
+      FROM places
+      ORDER BY created_at DESC
     `
 
     return NextResponse.json({ data: data.rows })
