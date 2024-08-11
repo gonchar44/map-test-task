@@ -4,7 +4,7 @@ import { Loader } from '@/components'
 import { useJsApiLoader } from '@react-google-maps/api'
 import { mapLibraries, mapOptions } from '@/app/map/constants'
 import { useEffect, useRef, useState } from 'react'
-import SearchAutocomplete from '@/components/map/search-autocomplete'
+import { SearchAutocomplete } from '@/components'
 
 export const MapTemplate = () => {
   // Local states
@@ -35,13 +35,13 @@ export const MapTemplate = () => {
   }, [isLoaded])
 
   return (
-    <section className="w-full flex flex-col items-center py-5">
+    <section className="w-full flex flex-col items-center">
       {isLoaded ? (
         <div className="w-full lg:w-8/12 flex flex-col items-center gap-y-3">
           <SearchAutocomplete
             isLoaded={isLoaded}
             map={map}
-            setSelectedAddress={setSelectedAddress}
+            onSelectAddress={setSelectedAddress}
           />
 
           {selectedAddress && (
