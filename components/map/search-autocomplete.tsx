@@ -23,6 +23,10 @@ export const SearchAutocomplete: FC<Props> = ({
   const [autocomplete, setAutocomplete] =
     useState<google.maps.places.Autocomplete | null>(null)
   const autocompleteRef = useRef<HTMLInputElement>(null)
+  const markerRef = useRef<google.maps.marker.AdvancedMarkerElement | null>(
+    null
+  )
+  const infoWindowRef = useRef<google.maps.InfoWindow | null>(null) // Reference to the currently open InfoWindow
 
   const setupAutocomplete = () => {
     const options = { componentRestrictions: { country: 'dk' } }
@@ -50,15 +54,26 @@ export const SearchAutocomplete: FC<Props> = ({
     map.setCenter(position!)
     map.setZoom(mapZoom)
 
-    const marker = new google.maps.marker.AdvancedMarkerElement({
-      map,
-      position,
-      title: 'Marker 1'
-    })
+    if (markerRef.current) {
+      // Update the existing marker position
+      markerRef.current.position = position
+    } else {
+      // Create a new marker if it doesn't exist
+      markerRef.current = new google.maps.marker.AdvancedMarkerElement({
+        map,
+        position,
+        title: 'Marker 1'
+      })
+    }
+
+    // Close the currently open InfoWindow, if any
+    if (infoWindowRef.current) {
+      infoWindowRef.current.close()
+    }
 
     // Opening of card info on address selection
     const { name, formatted_address, url } = place
-    const placeCard = new google.maps.InfoWindow({
+    infoWindowRef.current = new google.maps.InfoWindow({
       position,
       content: buildMapPlaceCard({
         title: name!,
@@ -69,9 +84,9 @@ export const SearchAutocomplete: FC<Props> = ({
       minWidth: 220
     })
 
-    placeCard.open({
+    infoWindowRef.current.open({
       map,
-      anchor: marker
+      anchor: markerRef.current
     })
   }
 
