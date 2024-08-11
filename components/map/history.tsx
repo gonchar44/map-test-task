@@ -53,7 +53,7 @@ export const History = () => {
       ) : (
         <>
           {!!historyPlaces.length ? (
-            <ul className="flex flex-col gap-y-2 py-2">
+            <ul className="flex flex-col gap-y-2 py-2 max-h-96 overflow-auto">
               {historyPlaces.map((place) => (
                 <li className="flex items-center gap-x-1" key={place.id}>
                   <span
