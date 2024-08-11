@@ -8,7 +8,7 @@ export const GET = async () => {
     const data = await sql<Place>`
       SELECT id, name, formatted_address, lat, lng
       FROM places
-      ORDER BY created_at DESC
+      ORDER BY updated_at DESC
     `
 
     return NextResponse.json({ data: data.rows })

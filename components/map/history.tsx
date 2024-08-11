@@ -49,7 +49,7 @@ export const History = () => {
               {historyPlaces.map((place) => (
                 <li className="flex items-center gap-x-1" key={place.id}>
                   <span className="w-10/12 bg-primary-muted rounded text-primary-light p-2 block truncate">
-                    {place.formatted_address}_{place.formatted_address}
+                    {place.formatted_address}
                   </span>
 
                   {deletingItemId === place.id ? (

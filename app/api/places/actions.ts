@@ -22,13 +22,18 @@ export const createPlace = async (formData: FormData) => {
   }
 
   const placeId = uuidv4()
-  const createdAt = new Date().toISOString()
+  const currentTime = new Date().toISOString()
   const { name, formatted_address, lng, lat } = validatedFiles.data
 
   try {
     await sql`
-      INSERT INTO places (id, name, formatted_address, lat, lng, created_at)
-      VALUES (${placeId}, ${name}, ${formatted_address}, ${lng}, ${lat}, ${createdAt})
+      INSERT INTO places (id, name, formatted_address, lat, lng, created_at, updated_at)
+      VALUES (${placeId}, ${name}, ${formatted_address}, ${lat}, ${lng}, ${currentTime}, ${currentTime})
+      ON CONFLICT (lat, lng)
+      DO UPDATE SET
+        name = EXCLUDED.name,
+        formatted_address = EXCLUDED.formatted_address,
+        updated_at = ${currentTime}
     `
   } catch (error) {
     throw new Error(
