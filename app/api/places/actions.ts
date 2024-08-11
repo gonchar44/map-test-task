@@ -35,3 +35,11 @@ export const createPlace = async (formData: FormData) => {
     )
   }
 }
+
+export const deletePlace = async (id: string) => {
+  try {
+    await sql`DELETE FROM places WHERE id = ${id}`
+  } catch (error) {
+    throw new Error('The place deleting was failed')
+  }
+}
